@@ -2,6 +2,12 @@ from PIL import Image
 import torch
 from torchvision import transforms , models
 from torch import nn
+import os
+
+model_path = os.path.join("model", "saved_model.pth")
+
+
+
 
 trained_model = None
 class_name = ['Front_Breakage', 'Front_Crushed', 'Front_Normal', 'Rear_Breakage', 'Rear_Crushed', 'Rear_Normal']
@@ -42,9 +48,13 @@ def predict(image_path):
     global trained_model
     if trained_model is None:
         trained_model = CarClassifierResNet()
-        trained_model.load_state_dict(torch.load("model/saved_model.pth"))
+        model_path = os.path.join("model", "saved_model.pth")
+        if not os.path.exists(model_path):
+            raise FileNotFoundError(f"Model file not found at {model_path}")
+        trained_model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
         trained_model.eval()
+
     with torch.no_grad():
         output = trained_model(image_tensor)
-        _,predicted = torch.max(output, 1)
+        _, predicted = torch.max(output, 1)
         return class_name[predicted.item()]

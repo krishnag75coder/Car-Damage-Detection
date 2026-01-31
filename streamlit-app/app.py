@@ -8,6 +8,6 @@ if uploaded_file:
     image_path = "temp_file.jpg"
     with open(image_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
-        st.image(image_path, caption="Uploaded Image", use_container_width=True)
+        st.image(image_path, caption="Uploaded Image", width='stretch')
         prediction = predict(image_path)
         st.info(f"Prediction: {prediction}")
