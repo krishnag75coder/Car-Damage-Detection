@@ -1,0 +1,5 @@
+fastapi==0.128.0
+Pillow==12.0.0
+torch==2.9.1
+torchaudio==2.9.1
+torchvision==0.24.1
