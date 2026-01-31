@@ -1,11 +1,14 @@
 from PIL import Image
 import torch
+import os
 from torchvision import transforms , models
 from torch import nn
 
 trained_model = None
 class_name = ['Front_Breakage', 'Front_Crushed', 'Front_Normal', 'Rear_Breakage', 'Rear_Crushed', 'Rear_Normal']
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "model","saved_model.pth")
 
 
 class CarClassifierResNet(nn.Module):
@@ -42,7 +45,7 @@ def predict(image_path):
     global trained_model
     if trained_model is None:
         trained_model = CarClassifierResNet()
-        trained_model.load_state_dict(torch.load("model/saved_model.pth"))
+        trained_model.load_state_dict(torch.load(MODEL_PATH,map_location='cpu'))
         trained_model.eval()
     with torch.no_grad():
         output = trained_model(image_tensor)
