@@ -42,7 +42,7 @@ def predict(image_path):
     global trained_model
     if trained_model is None:
         trained_model = CarClassifierResNet()
-        trained_model.load_state_dict(torch.load("C:/Users/mudit/OneDrive/Desktop/code basics/code basics/DL/final_project_DL/fastapi-server/model/saved_model.pth"))
+        trained_model.load_state_dict(torch.load("C:/Users/mudit/OneDrive/Desktop/code basics/code basics/DL/final_project_DL/fastapi-server/model/saved_model.pth", map_location="cpu"))
         trained_model.eval()
     with torch.no_grad():
         output = trained_model(image_tensor)
