@@ -43,7 +43,7 @@ uploaded_file = st.file_uploader("Choose an image file", type=["png", "jpg", "jp
 # Predict button
 if uploaded_file:
     image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image", use_container_width=True)
+    st.image(image, caption="Uploaded Image", width='stretch')
 
     if st.button("Predict Damage"):
         # Save temporary image
