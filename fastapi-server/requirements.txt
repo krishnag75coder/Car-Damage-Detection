@@ -1,5 +1,5 @@
 fastapi==0.128.0
-unicorn==2.1.4
+unicorn[standard]==2.1.4
 Pillow==12.0.0
 torch==2.9.1
 torchaudio==2.9.1
