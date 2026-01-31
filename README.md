@@ -1,7 +1,7 @@
 # 🚗 Car Damage Detection System
 
 ## 🔗 Live Links
-- Frontend (Streamlit): https://car-damage-detection-jlehxfyg3wjnwynzxg38hh.streamlit.app/
+- Frontend (Streamlit): https://car-damage-detection-cczfsvpibec4ozjwbffxud.streamlit.app/
 - Backend API (Render): https://car-damage-detection-m.onrender.com/
 
 ## 📌 Project Overview
