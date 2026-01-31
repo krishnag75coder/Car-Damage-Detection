@@ -2,6 +2,14 @@ from PIL import Image
 import torch
 from torchvision import transforms , models
 from torch import nn
+import os
+
+# Get absolute path of your script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # path to fastapi-server folder
+model_path = os.path.join(BASE_DIR, "model", "saved_model.pth")
+
+if not os.path.exists(model_path):
+    raise FileNotFoundError(f"Model file not found at {model_path}")
 
 trained_model = None
 class_name = ['Front_Breakage', 'Front_Crushed', 'Front_Normal', 'Rear_Breakage', 'Rear_Crushed', 'Rear_Normal']
@@ -42,7 +50,7 @@ def predict(image_path):
     global trained_model
     if trained_model is None:
         trained_model = CarClassifierResNet()
-        trained_model.load_state_dict(torch.load("C:/Users/mudit/OneDrive/Desktop/code basics/code basics/DL/final_project_DL/fastapi-server/model/saved_model.pth", map_location="cpu"))
+        trained_model.load_state_dict(torch.load(model_path, map_location="cpu"))
         trained_model.eval()
     with torch.no_grad():
         output = trained_model(image_tensor)
