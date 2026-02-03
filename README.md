@@ -33,4 +33,9 @@ Output: Damage classification
 pip install -r requirements.txt
 python main.py
 streamlit run app.py
+```
+👨‍💻 Author
 
+Krishna Gupta
+
+Data Scientist | Machine Learning Engineer | AI & GenAI Enthusiast
